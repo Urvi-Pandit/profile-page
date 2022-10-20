@@ -1,80 +1,14 @@
 import { useState } from 'react';
+import {BrowserRouter, Router, Switch} from 'react-router-dom';
 import './App.css';
-import EditableUserProfile from './components/EditableUserProfile';
-import UserProfile from './components/UserProfile';
-
-const animals = [
-    "Aardvark",
-    "Albatross",
-    "Alpaca",
-    "Alligator",
-    "Anchovie",
-    "Angelfish",
-    "Ant",
-    "Antelope",
-    "Armadillo",
-    "Aurochs",
-    "Axolotl"
-]
-
-function randomColor() {
-    return "#" + Math.floor(Math.random()*16777215).toString(16);
-}
-
-function randomName() {
-    return "Anonymous " + animals[Math.floor(Math.random() * animals.length)]
-}
+import ProfileImage from './components/ProfileImage';
 
 
 function App() {
-    const now = new Date(Date.now());
-    const defaultBirthday = new Date(now.getTime() + 86400000);
-
-    const [editMode, setEditMode] = useState(false);
-
-    const [name, setName] = useState(randomName());
-    const [month, setMonth] = useState(defaultBirthday.getMonth());
-    const [day, setDay] = useState(defaultBirthday.getDate());
-    const [color, setColor] = useState(randomColor());
-
-    const stored = {name, month, day, color};
-    const isBirthdayToday = now.getMonth() === month && now.getDate() === day;
-
-    function handleEditComplete(result) {
-        console.log("handleEditComplete", result);
-        if (result != null) {
-            setName(result.name);
-            setMonth(result.month);
-            setDay(result.day);
-            setColor(result.color);
-        }        
-        setEditMode(false);
-    }
-
     return (
-        <div className="container">
-            <div className="App">                 
-                {
-                    editMode
-                        ? <>
-                            <h1>My Profile</h1>
-                            <EditableUserProfile
-                                    stored={stored}
-                                    editCompleteCallback={handleEditComplete}                            
-                            />
-                        </>
-                        : <>
-                            {
-                                isBirthdayToday
-                                    ? <div className="birthday">Happy Birthday!</div>
-                                    : <h1>My Profile</h1>
-                            }
-                            <UserProfile
-                                    stored={stored}
-                                    startEditCallback={() => setEditMode(true)}
-                            />
-                        </>
-                }            
+        <div className="container" style={{'flex-direction': 'row', 'flexShrink':'0', 'justifyContent': 'center', 'flexWrap': 'nowrap'}}>
+            <div>
+                <ProfileImage style={{backgroundColor: 'white', marginTop: '30px'}} />
             </div>
         </div>
     );
