@@ -19,20 +19,6 @@ div.group {
   height: 32px;
 }
 
-div.birthday {
-  font-size: x-large;
-  margin: 0.6em;
-}
-
-div.color-box {
-  position: relative;
-  top: 6px;
-  display: inline-block;
-  width: 50px;
-  height: 20px;
-  border: 1px solid darkgray;
-}
-
 label {
   margin: 0px;
 }
