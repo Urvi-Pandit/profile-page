@@ -1,2 +1,2 @@
 
- A simple user profile page using React.js.
+ My profile page, in react.
